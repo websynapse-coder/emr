@@ -15,7 +15,7 @@ import { getNavIcon } from '@/components/nav-icons';
 /* ------------------------------------------------------------------ */
 
 export function Sidebar() {
-  const { role, organization } = useRole();
+  const { role, roleLabel, organization, user } = useRole();
   const items = navByRole[role] ?? [];
   const pathname = usePathname();
 
@@ -111,10 +111,10 @@ export function Sidebar() {
 
       {/* Footer */}
       <div className="border-t border-sidebar-border px-4 py-2.5">
-        <p className="text-caption text-sidebar-muted leading-tight">
-          Behavioral Health EMR
+        <p className="truncate text-caption text-sidebar-muted leading-tight">
+          {user?.name ?? '—'}
         </p>
-        <p className="text-caption text-sidebar-muted leading-tight">Prototype build</p>
+        <p className="text-caption text-sidebar-muted leading-tight">{roleLabel}</p>
       </div>
     </aside>
   );

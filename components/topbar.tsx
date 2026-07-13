@@ -1,20 +1,19 @@
 'use client';
 
 import * as React from 'react';
-import { usePathname } from 'next/navigation';
-import { Check, ChevronsUpDown, Building2, Eye } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { Building2, LogOut, User as UserIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { useRole } from '@/lib/role-context';
-import { ROLE_LABELS } from '@/lib/mockData';
+import { useAuth } from '@/lib/auth-context';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
+  DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
@@ -97,116 +96,77 @@ export function TopBar() {
         <p className="text-caption text-text-muted leading-tight truncate">{subtitle}</p>
       </div>
 
-      <OrgSwitcher />
-      <RoleSwitcher />
+      <OrgBadge />
+      <UserMenu />
     </header>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  Org switcher                                                       */
+/*  Org badge (read-only — org is derived from the logged-in user)     */
 /* ------------------------------------------------------------------ */
 
-function OrgSwitcher() {
-  const { organization, organizations, setOrganization } = useRole();
+function OrgBadge() {
+  const { organization } = useRole();
+
+  return (
+    <div className="flex items-center gap-2 rounded-md border border-border bg-surface px-2.5 py-1.5 text-body-sm text-text-primary">
+      <Building2 className="h-4 w-4 text-text-secondary" aria-hidden="true" />
+      <span className="hidden max-w-32 truncate md:inline">
+        {organization.shortName}
+      </span>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  User menu (avatar + logout)                                        */
+/* ------------------------------------------------------------------ */
+
+function UserMenu() {
+  const { user, roleLabel } = useRole();
+  const { logout } = useAuth();
+  const router = useRouter();
+
+  if (!user) return null;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
         className={cn(
           'flex items-center gap-2 rounded-md border border-border',
-          'bg-surface px-2.5 py-1.5 text-body-sm text-text-primary',
-          'transition-colors hover:bg-surface-sunken'
+          'bg-surface px-2 py-1.5 transition-colors hover:bg-surface-sunken'
         )}
       >
-        <Building2 className="h-4 w-4 text-text-secondary" aria-hidden="true" />
-        <span className="hidden max-w-32 truncate md:inline">
-          {organization.shortName}
-        </span>
-        <ChevronsUpDown className="h-3.5 w-3.5 text-text-muted" aria-hidden="true" />
+        <Avatar className="h-7 w-7">
+          <AvatarFallback className="bg-brand-primary/15 text-caption font-semibold text-brand-primary">
+            {user.initials}
+          </AvatarFallback>
+        </Avatar>
+        <div className="hidden text-left leading-tight sm:block">
+          <p className="max-w-28 truncate text-body-sm font-medium text-text-primary">
+            {user.name}
+          </p>
+          <p className="text-caption text-text-muted">{roleLabel}</p>
+        </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-64">
-        <DropdownMenuLabel>Organization</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup
-          value={organization.id}
-          onValueChange={setOrganization}
-        >
-          {organizations.map((org) => (
-            <DropdownMenuRadioItem key={org.id} value={org.id}>
-              <div className="flex flex-col">
-                <span>{org.shortName}</span>
-                <span className="text-caption text-text-muted">
-                  {org.tagline}
-                </span>
-              </div>
-            </DropdownMenuRadioItem>
-          ))}
-        </DropdownMenuRadioGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Role switcher (Demo Mode)                                          */
-/* ------------------------------------------------------------------ */
-
-function RoleSwitcher() {
-  const { role, roleLabel, user, roles, roleLabels, setRole } = useRole();
-
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger
-        className={cn(
-          'flex items-center gap-2.5 rounded-md border border-warning/40',
-          'bg-warning/10 px-2.5 py-1.5 text-body-sm text-warning-foreground',
-          'transition-colors hover:bg-warning/20'
-        )}
-      >
-        <Eye className="h-4 w-4 text-warning" aria-hidden="true" />
-        <span className="hidden text-caption font-semibold uppercase tracking-wide text-warning sm:inline">
-          Demo Mode
-        </span>
-        <span className="hidden text-body-sm text-text-primary md:inline">
-          Viewing as: {roleLabel}
-        </span>
-        <ChevronsUpDown className="h-3.5 w-3.5 text-text-muted" aria-hidden="true" />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-72">
+      <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel className="flex items-center gap-2">
-          <Eye className="h-4 w-4 text-warning" aria-hidden="true" />
-          Viewing as: {roleLabel}
+          <UserIcon className="h-4 w-4 text-text-muted" aria-hidden="true" />
+          {user.name}
         </DropdownMenuLabel>
+        <p className="px-2 text-caption text-text-muted">{user.title}</p>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup
-          value={role}
-          onValueChange={(v) => setRole(v as typeof role)}
+        <DropdownMenuItem
+          className="gap-2 text-danger"
+          onClick={() => {
+            logout();
+            router.push('/login');
+          }}
         >
-          {roles.map((r) => (
-            <DropdownMenuRadioItem key={r} value={r}>
-              {roleLabels[r]}
-            </DropdownMenuRadioItem>
-          ))}
-        </DropdownMenuRadioGroup>
-        <DropdownMenuSeparator />
-        {user && (
-          <div className="flex items-center gap-2.5 px-2 py-2">
-            <Avatar className="h-8 w-8">
-              <AvatarFallback className="bg-brand-primary/15 text-caption font-semibold text-brand-primary">
-                {user.initials}
-              </AvatarFallback>
-            </Avatar>
-            <div className="min-w-0">
-              <p className="truncate text-body-sm font-medium text-text-primary">
-                {user.name}
-              </p>
-              <p className="truncate text-caption text-text-muted">
-                {user.title}
-              </p>
-            </div>
-          </div>
-        )}
+          <LogOut className="h-4 w-4" aria-hidden="true" />
+          Sign out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
