@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Moonaria global styles.
+ *
+ * No hardcoded color/font/spacing values live here — every visual token is
+ * defined in lib/theme.ts and injected by <ThemeStyles /> in the root layout.
+ * The `@layer base` rules below reference semantic tokens (background,
+ * foreground, border, …) that resolve to CSS variables set by theme.ts.
+ */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply antialiased;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  /* Scrollbar tuned to the brand palette. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-surface-sunken;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border-strong rounded-md;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-primary/60;
+  }
+
+  /* Selection uses the brand accent. */
+  ::selection {
+    @apply bg-brand-primary/20 text-text-primary;
+  }
+}
+
+@layer components {
+  /* Reusable surface card for placeholder dashboard tiles. */
+  .moon-card {
+    @apply rounded-lg border border-border bg-card text-card-foreground shadow-sm transition-shadow hover:shadow-md;
+  }
+}
