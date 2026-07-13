@@ -1847,6 +1847,56 @@ export const orgFinancialMetrics: OrgFinancialMetrics = {
 /*  Helpers                                                            */
 /* ------------------------------------------------------------------ */
 
+/* ------------------------------------------------------------------ */
+/*  Sales leads (public Contact Sales form submissions)                */
+/* ------------------------------------------------------------------ */
+
+export type LeadStatus = 'New' | 'Contacted' | 'Converted';
+
+export interface SalesLead {
+  id: string;
+  organizationName: string;
+  contactName: string;
+  contactEmail: string;
+  contactPhone: string;
+  providerCount: string;
+  currentSystem?: string;
+  message?: string;
+  submittedAt: string;
+  status: LeadStatus;
+}
+
+export const salesLeads: SalesLead[] = [
+  {
+    id: 'lead-001',
+    organizationName: 'Lakeshore Family Therapy',
+    contactName: 'Karen Mills',
+    contactEmail: 'karen@lakeshoreft.com',
+    contactPhone: '(503) 555-0142',
+    providerCount: '6',
+    currentSystem: 'SimplePractice',
+    message: 'Looking for something that handles couple and family sessions better.',
+    submittedAt: '2026-07-10T14:22:00Z',
+    status: 'New',
+  },
+  {
+    id: 'lead-002',
+    organizationName: 'Cascade Psychiatric Associates',
+    contactName: 'James Okonkwo',
+    contactEmail: 'jokonkwo@cascadepsych.com',
+    contactPhone: '(206) 555-0198',
+    providerCount: '18',
+    currentSystem: 'Athenahealth',
+    message: 'Need credentialing tracking across multiple payers.',
+    submittedAt: '2026-07-11T09:15:00Z',
+    status: 'Contacted',
+  },
+];
+
+export function getLead(id: string): SalesLead | undefined {
+  return salesLeads.find((l) => l.id === id);
+}
+
 export function getOrg(orgId: string): Organization | undefined {
   return organizations.find((o) => o.id === orgId);
 }

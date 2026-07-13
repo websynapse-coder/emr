@@ -88,13 +88,13 @@ export function TopBar() {
   return (
     <header
       className={cn(
-        'flex h-16 shrink-0 items-center gap-4 border-b border-border',
+        'flex h-14 shrink-0 items-center gap-3 border-b border-border',
         'bg-surface px-4 md:px-6'
       )}
     >
-      <div className="flex-1">
-        <h1 className="text-h3 font-semibold text-text-primary">{title}</h1>
-        <p className="text-caption text-text-muted">{subtitle}</p>
+      <div className="flex-1 min-w-0">
+        <h1 className="text-h4 font-semibold text-text-primary leading-tight truncate">{title}</h1>
+        <p className="text-caption text-text-muted leading-tight truncate">{subtitle}</p>
       </div>
 
       <OrgSwitcher />
@@ -115,7 +115,7 @@ function OrgSwitcher() {
       <DropdownMenuTrigger
         className={cn(
           'flex items-center gap-2 rounded-md border border-border',
-          'bg-surface px-3 py-1.5 text-body-sm text-text-primary',
+          'bg-surface px-2.5 py-1.5 text-body-sm text-text-primary',
           'transition-colors hover:bg-surface-sunken'
         )}
       >
@@ -160,7 +160,7 @@ function RoleSwitcher() {
       <DropdownMenuTrigger
         className={cn(
           'flex items-center gap-2.5 rounded-md border border-warning/40',
-          'bg-warning/10 px-3 py-1.5 text-body-sm text-warning-foreground',
+          'bg-warning/10 px-2.5 py-1.5 text-body-sm text-warning-foreground',
           'transition-colors hover:bg-warning/20'
         )}
       >

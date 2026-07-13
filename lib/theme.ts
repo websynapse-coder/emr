@@ -171,14 +171,14 @@ export type TypographyToken = {
 };
 
 export const typography = {
-  display: { fontSize: '3rem', lineHeight: '1.1', fontWeight: 700, letterSpacing: '-0.02em' },
-  h1: { fontSize: '2.25rem', lineHeight: '1.15', fontWeight: 700, letterSpacing: '-0.02em' },
-  h2: { fontSize: '1.875rem', lineHeight: '1.2', fontWeight: 600, letterSpacing: '-0.01em' },
-  h3: { fontSize: '1.5rem', lineHeight: '1.25', fontWeight: 600, letterSpacing: '-0.01em' },
-  h4: { fontSize: '1.25rem', lineHeight: '1.3', fontWeight: 600, letterSpacing: '0' },
-  body: { fontSize: '1rem', lineHeight: '1.6', fontWeight: 400, letterSpacing: '0' },
-  'body-sm': { fontSize: '0.875rem', lineHeight: '1.6', fontWeight: 400, letterSpacing: '0' },
-  caption: { fontSize: '0.75rem', lineHeight: '1.5', fontWeight: 500, letterSpacing: '0.02em' },
+  display: { fontSize: '2rem', lineHeight: '1.15', fontWeight: 600, letterSpacing: '-0.02em' },
+  h1: { fontSize: '2rem', lineHeight: '1.2', fontWeight: 600, letterSpacing: '-0.02em' },
+  h2: { fontSize: '1.5rem', lineHeight: '1.25', fontWeight: 600, letterSpacing: '-0.01em' },
+  h3: { fontSize: '1.25rem', lineHeight: '1.3', fontWeight: 600, letterSpacing: '-0.01em' },
+  h4: { fontSize: '1.125rem', lineHeight: '1.35', fontWeight: 500, letterSpacing: '0' },
+  body: { fontSize: '0.875rem', lineHeight: '1.5', fontWeight: 400, letterSpacing: '0' },
+  'body-sm': { fontSize: '0.8125rem', lineHeight: '1.5', fontWeight: 400, letterSpacing: '0' },
+  caption: { fontSize: '0.75rem', lineHeight: '1.4', fontWeight: 500, letterSpacing: '0.01em' },
 } as const satisfies Record<string, TypographyToken>;
 
 /* ------------------------------------------------------------------ */
@@ -187,22 +187,22 @@ export const typography = {
 
 export const spacing = {
   0: '0px',
-  0.5: '4px',
-  1: '8px',
-  1.5: '12px',
-  2: '16px',
-  3: '24px',
-  4: '32px',
-  5: '40px',
-  6: '48px',
-  7: '56px',
-  8: '64px',
-  10: '80px',
-  12: '96px',
-  14: '112px',
-  16: '128px',
-  20: '160px',
-  24: '192px',
+  0.5: '2px',
+  1: '4px',
+  1.5: '6px',
+  2: '8px',
+  3: '12px',
+  4: '16px',
+  5: '20px',
+  6: '24px',
+  7: '28px',
+  8: '32px',
+  10: '40px',
+  12: '48px',
+  14: '56px',
+  16: '64px',
+  20: '80px',
+  24: '96px',
 } as const;
 
 /* ------------------------------------------------------------------ */

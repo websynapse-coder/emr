@@ -28,34 +28,34 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        'flex h-full w-64 shrink-0 flex-col',
+        'flex h-full w-60 shrink-0 flex-col',
         'bg-sidebar text-sidebar-foreground',
         'border-r border-sidebar-border'
       )}
     >
       {/* Brand / org block */}
-      <div className="flex items-center gap-2.5 px-4 py-4">
+      <div className="flex items-center gap-2.5 px-4 h-14 shrink-0">
         <div
           className={cn(
-            'flex h-9 w-9 shrink-0 items-center justify-center rounded-lg',
+            'flex h-8 w-8 shrink-0 items-center justify-center rounded-md',
             'bg-brand-primary text-brand-primary-foreground'
           )}
         >
-          <Moon className="h-5 w-5" aria-hidden="true" />
+          <Moon className="h-4 w-4" aria-hidden="true" />
         </div>
         <div className="min-w-0">
-          <p className="text-h4 font-semibold text-sidebar-foreground">Moonaria</p>
-          <p className="truncate text-caption text-sidebar-muted">
+          <p className="text-body-sm font-semibold text-sidebar-foreground leading-tight">Moonaria</p>
+          <p className="truncate text-caption text-sidebar-muted leading-tight">
             {organization.shortName}
           </p>
         </div>
       </div>
 
-      <div className="mx-4 h-px bg-sidebar-border" />
+      <div className="mx-3 h-px bg-sidebar-border" />
 
       {/* Nav */}
-      <nav className="flex-1 overflow-y-auto px-2 py-3">
-        <p className="px-2 pb-2 text-caption uppercase tracking-wide text-sidebar-muted">
+      <nav className="flex-1 overflow-y-auto px-2 py-2">
+        <p className="px-2 pb-1 pt-1 text-caption uppercase tracking-wide text-sidebar-muted">
           {role === 'patient' ? 'Patient Portal' : 'Workspace'}
         </p>
         <ul className="space-y-0.5">
@@ -68,15 +68,15 @@ export function Sidebar() {
                 <Link
                   href={href}
                   className={cn(
-                    'group flex w-full items-center gap-3 rounded-md px-2.5 py-2 text-body-sm transition-colors',
+                    'group flex w-full items-center gap-3 rounded-md px-2.5 h-10 text-body-sm transition-colors',
                     active
-                      ? 'bg-sidebar-accent text-sidebar-accent-foreground'
-                      : 'text-sidebar-foreground hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground'
+                      ? 'bg-sidebar-accent text-sidebar-accent-foreground font-medium'
+                      : 'text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground'
                   )}
                 >
                   <Icon
                     className={cn(
-                      'h-4 w-4 shrink-0',
+                      'h-5 w-5 shrink-0',
                       active
                         ? 'text-sidebar-accent-foreground'
                         : 'text-sidebar-muted group-hover:text-sidebar-accent-foreground'
@@ -110,11 +110,11 @@ export function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-sidebar-border px-4 py-3">
-        <p className="text-caption text-sidebar-muted">
+      <div className="border-t border-sidebar-border px-4 py-2.5">
+        <p className="text-caption text-sidebar-muted leading-tight">
           Behavioral Health EMR
         </p>
-        <p className="text-caption text-sidebar-muted">Prototype build</p>
+        <p className="text-caption text-sidebar-muted leading-tight">Prototype build</p>
       </div>
     </aside>
   );

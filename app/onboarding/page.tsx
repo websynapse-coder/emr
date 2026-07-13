@@ -1,22 +1,11 @@
 'use client';
 
 import * as React from 'react';
-import { useRouter } from 'next/navigation';
-import {
-  Moon,
-  Building2,
-  CreditCard,
-  FileSignature,
-  UserPlus,
-  Check,
-  ChevronLeft,
-  ChevronRight,
-  ShieldCheck,
-  Lock,
-} from 'lucide-react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Moon, Building2, CreditCard, Signature as FileSignature, UserPlus, Check, ChevronLeft, ChevronRight, ShieldCheck, Lock } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import { plans } from '@/lib/mockData';
+import { plans, salesLeads, getLead } from '@/lib/mockData';
 import { useRole } from '@/lib/role-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -70,11 +59,27 @@ export default function OnboardingPage() {
     confirm: '',
   });
 
+  // Pre-fill from a converted sales lead (internal admin "Convert to Organization" flow)
+  const searchParams = useSearchParams();
+  React.useEffect(() => {
+    const leadId = searchParams.get('lead');
+    if (!leadId) return;
+    const lead = getLead(leadId);
+    if (!lead) return;
+    setOrgForm((f) => ({ ...f, name: lead.organizationName }));
+    setAdminForm((f) => ({ ...f, name: lead.contactName, email: lead.contactEmail }));
+  }, [searchParams]);
+
   const goTo = (id: StepId) => setStep(id);
   const next = () => setStep((s) => (s < 4 ? ((s + 1) as StepId) : s));
   const back = () => setStep((s) => (s > 1 ? ((s - 1) as StepId) : s));
 
   const complete = () => {
+    const leadId = searchParams.get('lead');
+    if (leadId) {
+      const lead = getLead(leadId);
+      if (lead) lead.status = 'Converted';
+    }
     setRole('org-owner');
     setOrganization('org-harborline');
     router.push('/dashboard');
