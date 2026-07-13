@@ -67,7 +67,7 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-4">
             <button
-              onClick={() => router.push('/dashboard')}
+              onClick={() => router.push('/login')}
               className="text-body-sm text-text-muted transition-colors hover:text-text-primary"
             >
               Log In
