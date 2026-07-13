@@ -1,0 +1,196 @@
+{
+  "users": [
+    {
+      "id": "user-001",
+      "name": "Dana Whitlock",
+      "email": "dana.whitlock@harborline.org",
+      "password": "harborline2026",
+      "role": "org-owner",
+      "orgId": "org-harborline",
+      "title": "Organization Owner",
+      "initials": "DW"
+    },
+    {
+      "id": "user-002",
+      "name": "Marcus Reyes",
+      "email": "marcus.reyes@harborline.org",
+      "password": "harborline2026",
+      "role": "practice-manager",
+      "orgId": "org-harborline",
+      "title": "Practice Manager",
+      "initials": "MR"
+    },
+    {
+      "id": "user-003",
+      "name": "Dr. Priya Nair",
+      "email": "priya.nair@harborline.org",
+      "password": "harborline2026",
+      "role": "provider",
+      "orgId": "org-harborline",
+      "title": "Licensed Psychologist",
+      "initials": "PN"
+    },
+    {
+      "id": "user-004",
+      "name": "Dr. Eli Brennan",
+      "email": "eli.brennan@harborline.org",
+      "password": "harborline2026",
+      "role": "provider",
+      "orgId": "org-harborline",
+      "title": "Psychiatrist",
+      "initials": "EB"
+    },
+    {
+      "id": "user-005",
+      "name": "Sandra Okafor",
+      "email": "sandra.okafor@harborline.org",
+      "password": "harborline2026",
+      "role": "clinical-supervisor",
+      "orgId": "org-harborline",
+      "title": "Clinical Supervisor",
+      "initials": "SO"
+    },
+    {
+      "id": "user-006",
+      "name": "Tomás Aguilar",
+      "email": "tomas.aguilar@harborline.org",
+      "password": "harborline2026",
+      "role": "biller",
+      "orgId": "org-harborline",
+      "title": "Billing Specialist",
+      "initials": "TA"
+    },
+    {
+      "id": "user-007",
+      "name": "Hannah Lindqvist",
+      "email": "hannah.lindqvist@harborline.org",
+      "password": "harborline2026",
+      "role": "front-desk",
+      "orgId": "org-harborline",
+      "title": "Front Desk Coordinator",
+      "initials": "HL"
+    },
+    {
+      "id": "user-008",
+      "name": "Jordan Avery",
+      "email": "jordan.avery@example.org",
+      "password": "patient2026",
+      "role": "patient",
+      "orgId": "org-harborline",
+      "title": "Patient",
+      "initials": "JA"
+    },
+    {
+      "id": "user-009",
+      "name": "Maya Castellanos",
+      "email": "maya.castellanos@harborline.org",
+      "password": "harborline2026",
+      "role": "provider",
+      "orgId": "org-harborline",
+      "title": "Associate Therapist (LPC Intern)",
+      "initials": "MC"
+    },
+    {
+      "id": "user-010",
+      "name": "Greg Tanaka",
+      "email": "greg.tanaka@harborline.org",
+      "password": "harborline2026",
+      "role": "provider",
+      "orgId": "org-harborline",
+      "title": "LCSW",
+      "initials": "GT"
+    },
+    {
+      "id": "user-011",
+      "name": "Aisha Rahman",
+      "email": "aisha.rahman@solace.org",
+      "password": "solace2026",
+      "role": "practice-manager",
+      "orgId": "org-solace",
+      "title": "Practice Manager",
+      "initials": "AR"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "org-harborline",
+      "name": "Harborline Behavioral Health",
+      "shortName": "Harborline",
+      "initials": "HB",
+      "tagline": "Outpatient & IOP across the Pacific Northwest",
+      "plan": "professional",
+      "providerCount": 12
+    },
+    {
+      "id": "org-solace",
+      "name": "Solace Community Counseling",
+      "shortName": "Solace",
+      "initials": "SC",
+      "tagline": "Community mental health serving 4 counties",
+      "plan": "professional",
+      "providerCount": 8
+    },
+    {
+      "id": "org-northpoint",
+      "name": "Northpoint Psychiatry Group",
+      "shortName": "Northpoint",
+      "initials": "NP",
+      "tagline": "Psychiatry & medication management",
+      "plan": "enterprise",
+      "providerCount": 34
+    }
+  ],
+  "providers": [
+    {
+      "userId": "user-003",
+      "npi": "1486793210",
+      "licenseNumber": "PSY-29381",
+      "licenseState": "OR",
+      "taxonomyCode": "103T00000X",
+      "isAssociate": false,
+      "supervisorId": null,
+      "completion": 100,
+      "credentials": [
+        { "payerId": "payer-aetna", "payerName": "Aetna", "status": "credentialed" },
+        { "payerId": "payer-blueshield", "payerName": "Blue Shield of California", "status": "credentialed" },
+        { "payerId": "payer-cigna", "payerName": "Cigna", "status": "pending" },
+        { "payerId": "payer-medicaid", "payerName": "State Medicaid", "status": "credentialed" },
+        { "payerId": "payer-medicare", "payerName": "Medicare Part B", "status": "not-credentialed" }
+      ]
+    },
+    {
+      "userId": "user-004",
+      "npi": "1938472010",
+      "licenseNumber": "MD-77321",
+      "licenseState": "WA",
+      "taxonomyCode": "2084P0800X",
+      "isAssociate": false,
+      "supervisorId": null,
+      "completion": 100,
+      "credentials": [
+        { "payerId": "payer-aetna", "payerName": "Aetna", "status": "credentialed" },
+        { "payerId": "payer-blueshield", "payerName": "Blue Shield of California", "status": "credentialed" },
+        { "payerId": "payer-cigna", "payerName": "Cigna", "status": "credentialed" },
+        { "payerId": "payer-medicaid", "payerName": "State Medicaid", "status": "credentialed" },
+        { "payerId": "payer-medicare", "payerName": "Medicare Part B", "status": "credentialed" }
+      ]
+    },
+    {
+      "userId": "user-009",
+      "npi": "1726403928",
+      "licenseNumber": "LPC-10432",
+      "licenseState": "OR",
+      "taxonomyCode": "101Y00000X",
+      "isAssociate": true,
+      "supervisorId": "user-003",
+      "completion": 60,
+      "credentials": [
+        { "payerId": "payer-aetna", "payerName": "Aetna", "status": "pending" },
+        { "payerId": "payer-blueshield", "payerName": "Blue Shield of California", "status": "not-credentialed" },
+        { "payerId": "payer-cigna", "payerName": "Cigna", "status": "not-credentialed" },
+        { "payerId": "payer-medicaid", "payerName": "State Medicaid", "status": "pending" },
+        { "payerId": "payer-medicare", "payerName": "Medicare Part B", "status": "not-credentialed" }
+      ]
+    }
+  ]
+}

@@ -8,10 +8,10 @@ import {
   type User,
   ROLE_ORDER,
   ROLE_LABELS,
-  getDefaultUserForRole,
-  getOrg,
   organizations,
+  getOrg,
 } from '@/lib/mockData';
+import { useAuth } from '@/lib/auth-context';
 
 /* ------------------------------------------------------------------ */
 /*  Context shape                                                      */
@@ -22,16 +22,12 @@ interface RoleContextValue {
   role: Role;
   /** Human label for the active role, e.g. "Practice Manager". */
   roleLabel: string;
-  /** The mock user currently associated with the active role. */
+  /** The logged-in user. */
   user: User | undefined;
   /** The currently active organization. */
   organization: Organization;
   /** All organizations (for the org switcher). */
   organizations: Organization[];
-  /** Switch the demo role. Updates the active user to the first match. */
-  setRole: (role: Role) => void;
-  /** Switch the active organization. */
-  setOrganization: (orgId: string) => void;
   /** All roles in display order. */
   roles: Role[];
   /** Label lookup for any role. */
@@ -44,21 +40,25 @@ const RoleContext = React.createContext<RoleContextValue | null>(null);
 /*  Provider                                                           */
 /* ------------------------------------------------------------------ */
 
-const DEFAULT_ROLE: Role = 'provider';
-
 export function RoleProvider({ children }: { children: React.ReactNode }) {
-  const [role, setRoleState] = React.useState<Role>(DEFAULT_ROLE);
-  const [orgId, setOrgId] = React.useState<string>(organizations[0].id);
+  const { user: authUser } = useAuth();
 
-  const setRole = React.useCallback((next: Role) => {
-    setRoleState(next);
-  }, []);
+  const role = authUser?.role ?? 'provider';
+  const orgId = authUser?.orgId ?? organizations[0].id;
 
-  const setOrganization = React.useCallback((id: string) => {
-    setOrgId(id);
-  }, []);
+  const user = React.useMemo<User | undefined>(() => {
+    if (!authUser) return undefined;
+    return {
+      id: authUser.id,
+      name: authUser.name,
+      email: authUser.email,
+      role: authUser.role,
+      orgId: authUser.orgId,
+      title: authUser.title,
+      initials: authUser.initials,
+    };
+  }, [authUser]);
 
-  const user = React.useMemo(() => getDefaultUserForRole(role), [role]);
   const organization = React.useMemo(
     () => getOrg(orgId) ?? organizations[0],
     [orgId]
@@ -71,12 +71,10 @@ export function RoleProvider({ children }: { children: React.ReactNode }) {
       user,
       organization,
       organizations,
-      setRole,
-      setOrganization,
       roles: ROLE_ORDER,
       roleLabels: ROLE_LABELS,
     }),
-    [role, user, organization, setRole, setOrganization]
+    [role, user, organization]
   );
 
   return <RoleContext.Provider value={value}>{children}</RoleContext.Provider>;

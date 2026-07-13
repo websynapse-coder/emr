@@ -7,9 +7,11 @@ import { Moon, Mail, Lock, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useAuth } from '@/lib/auth-context';
 
 export default function LoginPage() {
   const router = useRouter();
+  const { login } = useAuth();
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [error, setError] = React.useState('');
@@ -25,9 +27,17 @@ export default function LoginPage() {
     }
 
     setLoading(true);
-    setTimeout(() => {
-      router.push('/dashboard');
-    }, 400);
+    const user = login(email, password);
+
+    if (!user) {
+      setError('Invalid email or password.');
+      setLoading(false);
+      return;
+    }
+
+    // Redirect based on role: patients go to portal, everyone else to dashboard
+    const target = user.role === 'patient' ? '/portal' : '/dashboard';
+    router.push(target);
   };
 
   return (

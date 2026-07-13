@@ -6,7 +6,6 @@ import { Moon, Building2, CreditCard, Signature as FileSignature, UserPlus, Chec
 
 import { cn } from '@/lib/utils';
 import { plans, salesLeads, getLead } from '@/lib/mockData';
-import { useRole } from '@/lib/role-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -38,7 +37,6 @@ type StepId = (typeof STEPS)[number]['id'];
 
 export default function OnboardingPage() {
   const router = useRouter();
-  const { setRole, setOrganization } = useRole();
   const [step, setStep] = React.useState<StepId>(1);
 
   const [orgForm, setOrgForm] = React.useState({
@@ -80,9 +78,8 @@ export default function OnboardingPage() {
       const lead = getLead(leadId);
       if (lead) lead.status = 'Converted';
     }
-    setRole('org-owner');
-    setOrganization('org-harborline');
-    router.push('/dashboard');
+    // After onboarding, redirect to login so the user can sign in
+    router.push('/login');
   };
 
   return (
