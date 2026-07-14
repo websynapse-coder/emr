@@ -226,9 +226,6 @@ export const navByRole: Record<Role, NavItem[]> = {
   'org-owner': [
     { id: 'dashboard', label: 'Dashboard', icon: 'LayoutDashboard', href: '/dashboard' },
     { id: 'financials', label: 'Financials', icon: 'BarChart3', href: '/financials' },
-    { id: 'orgs', label: 'Organizations', icon: 'Building2', href: '/orgs' },
-    { id: 'practices', label: 'Practices', icon: 'Hospital', href: '/practices' },
-    { id: 'users', label: 'Users & Roles', icon: 'Users', href: '/users' },
     { id: 'team', label: 'Team', icon: 'Users', href: '/team' },
     { id: 'providers', label: 'Providers', icon: 'Stethoscope', href: '/providers' },
     { id: 'billing-org', label: 'Billing', icon: 'CreditCard', href: '/billing-org' },

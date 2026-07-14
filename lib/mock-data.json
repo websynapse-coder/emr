@@ -192,5 +192,360 @@
         { "payerId": "payer-medicare", "payerName": "Medicare Part B", "status": "not-credentialed" }
       ]
     }
+  ],
+  "practices": [
+    {
+      "id": "practice-001",
+      "orgId": "org-harborline",
+      "name": "Harborline — Oakland",
+      "address": "1200 Broadway, Suite 410, Oakland, CA 94612",
+      "phone": "(510) 555-0180",
+      "timeZone": "America/Los_Angeles",
+      "serviceLines": ["Outpatient Individual", "Outpatient Group", "IOP"],
+      "modalities": ["telehealth", "in-person"],
+      "visitsPerMonth": 1247,
+      "status": "active"
+    },
+    {
+      "id": "practice-002",
+      "orgId": "org-harborline",
+      "name": "Harborline — Berkeley",
+      "address": "2150 Shattuck Ave, Berkeley, CA 94704",
+      "phone": "(510) 555-0192",
+      "timeZone": "America/Los_Angeles",
+      "serviceLines": ["Outpatient Individual", "Outpatient Family"],
+      "modalities": ["in-person"],
+      "visitsPerMonth": 892,
+      "status": "active"
+    },
+    {
+      "id": "practice-003",
+      "orgId": "org-harborline",
+      "name": "Harborline — Telehealth",
+      "address": "Remote / Virtual",
+      "phone": "(510) 555-0180",
+      "timeZone": "America/Los_Angeles",
+      "serviceLines": ["Outpatient Individual", "Outpatient Group", "IOP", "Psychiatry"],
+      "modalities": ["telehealth"],
+      "visitsPerMonth": 2103,
+      "status": "active"
+    },
+    {
+      "id": "practice-004",
+      "orgId": "org-harborline",
+      "name": "Harborline — Portland",
+      "address": "800 SW Broadway, Portland, OR 97205",
+      "phone": "(503) 555-0210",
+      "timeZone": "America/Los_Angeles",
+      "serviceLines": ["Outpatient Individual", "Psychiatry"],
+      "modalities": ["telehealth", "in-person"],
+      "visitsPerMonth": 634,
+      "status": "active"
+    }
+  ],
+  "orgOnboarding": [
+    {
+      "orgId": "org-harborline",
+      "legalName": "Harborline Behavioral Health, Inc.",
+      "dbaName": "Harborline Behavioral Health",
+      "taxId": "84-2918374",
+      "npi": "1938472010",
+      "address": "1200 Broadway, Suite 410, Oakland, CA 94612",
+      "billingAddress": "1200 Broadway, Suite 410, Oakland, CA 94612",
+      "primaryContactName": "Dana Whitlock",
+      "primaryContactEmail": "dana.whitlock@harborline.org",
+      "primaryContactPhone": "(510) 555-0180",
+      "billingContactName": "Marcus Reyes",
+      "billingContactEmail": "marcus.reyes@harborline.org",
+      "billingContactPhone": "(510) 555-0181",
+      "statesServed": ["CA", "OR", "WA"],
+      "serviceTypes": ["Outpatient Individual", "Outpatient Group", "IOP", "Psychiatry"],
+      "providerCount": 12,
+      "currentSystem": "SimplePractice",
+      "salesRepName": "Jordan Lee",
+      "salesRepEmail": "jordan.lee@moonaria.com",
+      "dealCloseDate": "2026-06-15",
+      "onboardingCompletedDate": "2026-06-28",
+      "documents": [
+        {
+          "id": "doc-baa",
+          "name": "Business Associate Agreement (BAA)",
+          "type": "BAA",
+          "status": "signed",
+          "signedBy": "Dana Whitlock",
+          "signedDate": "2026-06-20",
+          "fileName": "Harborline_BAA_Executed.pdf"
+        },
+        {
+          "id": "doc-w9",
+          "name": "W-9 Tax Form",
+          "type": "W-9",
+          "status": "signed",
+          "signedBy": "Dana Whitlock",
+          "signedDate": "2026-06-18",
+          "fileName": "Harborline_W9.pdf"
+        },
+        {
+          "id": "doc-msa",
+          "name": "Master Services Agreement",
+          "type": "MSA",
+          "status": "signed",
+          "signedBy": "Dana Whitlock",
+          "signedDate": "2026-06-15",
+          "fileName": "Harborline_MSA_Executed.pdf"
+        },
+        {
+          "id": "doc-nondisclosure",
+          "name": "Non-Disclosure Agreement",
+          "type": "NDA",
+          "status": "signed",
+          "signedBy": "Dana Whitlock",
+          "signedDate": "2026-06-12",
+          "fileName": "Harborline_NDA_Executed.pdf"
+        }
+      ]
+    }
+  ],
+  "billingInvoices": [
+    {
+      "id": "inv-2026-001",
+      "orgId": "org-harborline",
+      "invoiceNumber": "INV-2026-001",
+      "period": "Jul 1 – Jul 31, 2026",
+      "amountCents": 425000,
+      "status": "paid",
+      "issuedDate": "2026-07-01",
+      "paidDate": "2026-07-03",
+      "plan": "Professional",
+      "seats": 12,
+      "seatPriceCents": 3500,
+      "prorationCents": 500,
+      "taxCents": 0
+    },
+    {
+      "id": "inv-2026-002",
+      "orgId": "org-harborline",
+      "invoiceNumber": "INV-2026-002",
+      "period": "Aug 1 – Aug 31, 2026",
+      "amountCents": 42000,
+      "status": "due",
+      "dueDate": "2026-08-01",
+      "issuedDate": "2026-07-15",
+      "plan": "Professional",
+      "seats": 12,
+      "seatPriceCents": 3500,
+      "prorationCents": 0,
+      "taxCents": 0
+    },
+    {
+      "id": "inv-2026-003",
+      "orgId": "org-harborline",
+      "invoiceNumber": "INV-2026-003",
+      "period": "Jun 1 – Jun 30, 2026",
+      "amountCents": 385000,
+      "status": "paid",
+      "issuedDate": "2026-06-01",
+      "paidDate": "2026-06-03",
+      "plan": "Professional",
+      "seats": 11,
+      "seatPriceCents": 3500,
+      "prorationCents": 0,
+      "taxCents": 0
+    }
+  ],
+  "billingPlan": {
+    "orgId": "org-harborline",
+    "planName": "Professional",
+    "seatsIncluded": 15,
+    "seatsUsed": 12,
+    "seatPriceCents": 3500,
+    "billingCycle": "monthly",
+    "autoPayEnabled": true,
+    "paymentMethod": "Visa ending 4242",
+    "nextInvoiceDate": "2026-08-01",
+    "nextInvoiceAmountCents": 42000,
+    "currentPeriodStart": "2026-07-01",
+    "currentPeriodEnd": "2026-07-31"
+  },
+  "complianceRecords": [
+    {
+      "orgId": "org-harborline",
+      "hipaaTraining": {
+        "totalStaff": 12,
+        "completedStaff": 11,
+        "dueDate": "2026-09-01",
+        "lastUpdated": "2026-07-10"
+      },
+      "baaAgreements": [
+        {
+          "id": "baa-001",
+          "vendorName": "Moonaria (EMR Platform)",
+          "status": "active",
+          "signedDate": "2026-06-20",
+          "expiryDate": "2027-06-20",
+          "fileName": "Moonaria_BAA_Executed.pdf"
+        },
+        {
+          "id": "baa-002",
+          "vendorName": "Twilio (SMS Reminders)",
+          "status": "active",
+          "signedDate": "2026-06-22",
+          "expiryDate": "2027-06-22",
+          "fileName": "Twilio_BAA_Executed.pdf"
+        },
+        {
+          "id": "baa-003",
+          "vendorName": "Change Healthcare (Clearinghouse)",
+          "status": "active",
+          "signedDate": "2026-06-25",
+          "expiryDate": "2027-06-25",
+          "fileName": "ChangeHealthcare_BAA_Executed.pdf"
+        },
+        {
+          "id": "baa-004",
+          "vendorName": "Google Workspace (Email)",
+          "status": "expiring",
+          "signedDate": "2025-08-01",
+          "expiryDate": "2026-08-01",
+          "fileName": "Google_BAA.pdf"
+        }
+      ],
+      "auditLogs": {
+        "retentionPeriod": "7 years",
+        "status": "compliant",
+        "lastReviewDate": "2026-07-01"
+      },
+      "incidents": [
+        {
+          "id": "inc-001",
+          "title": "Unauthorized access attempt — resolved",
+          "severity": "low",
+          "status": "resolved",
+          "reportedDate": "2026-06-28",
+          "resolvedDate": "2026-07-02",
+          "description": "Failed login attempts from unknown IP detected and blocked. No PHI accessed."
+        }
+      ],
+      "policies": [
+        {
+          "id": "pol-001",
+          "name": "HIPAA Privacy Policy",
+          "status": "active",
+          "lastReviewed": "2026-06-15",
+          "nextReviewDue": "2027-06-15"
+        },
+        {
+          "id": "pol-002",
+          "name": "Data Retention Policy",
+          "status": "active",
+          "lastReviewed": "2026-06-15",
+          "nextReviewDue": "2027-06-15"
+        },
+        {
+          "id": "pol-003",
+          "name": "Incident Response Plan",
+          "status": "active",
+          "lastReviewed": "2026-05-20",
+          "nextReviewDue": "2027-05-20"
+        },
+        {
+          "id": "pol-004",
+          "name": "42 CFR Part 2 Compliance Policy",
+          "status": "review-due",
+          "lastReviewed": "2025-07-01",
+          "nextReviewDue": "2026-07-01"
+        }
+      ]
+    }
+  ],
+  "reportTemplates": [
+    {
+      "id": "rpt-001",
+      "name": "Monthly Utilization Report",
+      "description": "Provider-level session counts, modality breakdown, and no-show rates",
+      "category": "Operational",
+      "schedule": "monthly",
+      "lastRunDate": "2026-07-10",
+      "nextRunDate": "2026-08-10",
+      "format": "PDF",
+      "status": "scheduled"
+    },
+    {
+      "id": "rpt-002",
+      "name": "Revenue by Payer",
+      "description": "Claim revenue broken down by insurance payer with denial rates",
+      "category": "Financial",
+      "schedule": "on-demand",
+      "lastRunDate": "2026-07-11",
+      "nextRunDate": null,
+      "format": "CSV",
+      "status": "available"
+    },
+    {
+      "id": "rpt-003",
+      "name": "Clinical Outcomes Summary",
+      "description": "PHQ-9, GAD-7, and outcome measure trends across active patients",
+      "category": "Clinical",
+      "schedule": "monthly",
+      "lastRunDate": "2026-07-05",
+      "nextRunDate": "2026-08-05",
+      "format": "PDF",
+      "status": "scheduled"
+    },
+    {
+      "id": "rpt-004",
+      "name": "Claim Denial Analysis",
+      "description": "Denied claims grouped by payer, denial code, and provider",
+      "category": "Financial",
+      "schedule": "on-demand",
+      "lastRunDate": "2026-07-12",
+      "nextRunDate": null,
+      "format": "CSV",
+      "status": "available"
+    },
+    {
+      "id": "rpt-005",
+      "name": "Credentialing Status Report",
+      "description": "Provider credentialing completion and payer panel status",
+      "category": "Operational",
+      "schedule": "weekly",
+      "lastRunDate": "2026-07-08",
+      "nextRunDate": "2026-07-15",
+      "format": "PDF",
+      "status": "scheduled"
+    },
+    {
+      "id": "rpt-006",
+      "name": "Supervision Hours Log",
+      "description": "Associate supervision hours tracked against state board requirements",
+      "category": "Clinical",
+      "schedule": "monthly",
+      "lastRunDate": "2026-07-01",
+      "nextRunDate": "2026-08-01",
+      "format": "PDF",
+      "status": "scheduled"
+    },
+    {
+      "id": "rpt-007",
+      "name": "Patient Satisfaction Survey",
+      "description": "Aggregated patient experience scores and feedback themes",
+      "category": "Operational",
+      "schedule": "quarterly",
+      "lastRunDate": "2026-06-30",
+      "nextRunDate": "2026-09-30",
+      "format": "PDF",
+      "status": "scheduled"
+    },
+    {
+      "id": "rpt-008",
+      "name": "Payer Mix Analysis",
+      "description": "Patient distribution across payers with revenue attribution",
+      "category": "Financial",
+      "schedule": "on-demand",
+      "lastRunDate": "2026-07-09",
+      "nextRunDate": null,
+      "format": "CSV",
+      "status": "available"
+    }
   ]
 }
