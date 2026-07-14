@@ -226,9 +226,6 @@ export const navByRole: Record<Role, NavItem[]> = {
   'org-owner': [
     { id: 'dashboard', label: 'Dashboard', icon: 'LayoutDashboard', href: '/dashboard' },
     { id: 'financials', label: 'Financials', icon: 'BarChart3', href: '/financials' },
-    { id: 'orgs', label: 'Organizations', icon: 'Building2', href: '/orgs' },
-    { id: 'practices', label: 'Practices', icon: 'Hospital', href: '/practices' },
-    { id: 'users', label: 'Users & Roles', icon: 'Users', href: '/users' },
     { id: 'team', label: 'Team', icon: 'Users', href: '/team' },
     { id: 'providers', label: 'Providers', icon: 'Stethoscope', href: '/providers' },
     { id: 'billing-org', label: 'Billing', icon: 'CreditCard', href: '/billing-org' },
@@ -518,18 +515,36 @@ export const orgStats: OrgStats = {
 /*  Patients                                                           */
 /* ------------------------------------------------------------------ */
 
+export type PatientStatus = 'pre-admission' | 'admitted' | 'active' | 'discharged';
+
+export type AdmissionStep =
+  | 'demographics'
+  | 'insurance'
+  | 'eligibility'
+  | 'intake-forms'
+  | 'review'
+  | 'admit';
+
 export interface Patient {
   id: string;
   name: string;
   dateOfBirth: string;
-  /** Minor flag — guardian consent required for sessions. */
   isMinor: boolean;
-  /** Guardian name (only for minors). */
   guardianName?: string;
-  /** Primary insurance payer id. */
   payerId: string;
-  /** Member id for the payer. */
   memberId: string;
+  gender?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  emergencyContactName?: string;
+  emergencyContactPhone?: string;
+  groupNumber?: string;
+  status?: PatientStatus;
+  assignedProviderId?: string;
+  admissionProgress?: AdmissionStep[];
+  submittedFormIds?: string[];
+  createdAt?: string;
 }
 
 export const patients: Patient[] = [
@@ -540,6 +555,18 @@ export const patients: Patient[] = [
     isMinor: false,
     payerId: 'payer-aetna',
     memberId: 'AET-12-3456',
+    gender: 'Male',
+    phone: '(510) 555-0142',
+    email: 'jordan.avery@email.com',
+    address: '1428 Linden St, Oakland, CA 94607',
+    emergencyContactName: 'Casey Avery',
+    emergencyContactPhone: '(510) 555-0143',
+    groupNumber: 'GRP-AET-001',
+    status: 'active',
+    assignedProviderId: 'user-003',
+    admissionProgress: ['demographics', 'insurance', 'eligibility', 'intake-forms', 'review', 'admit'],
+    submittedFormIds: ['form-demo', 'form-hipaa', 'form-medical', 'form-consent', 'form-roi'],
+    createdAt: '2026-05-15',
   },
   {
     id: 'pt-002',
@@ -548,6 +575,18 @@ export const patients: Patient[] = [
     isMinor: false,
     payerId: 'payer-blueshield',
     memberId: 'BSC-778821',
+    gender: 'Female',
+    phone: '(510) 555-0150',
+    email: 'maria.sato@email.com',
+    address: '920 Ashby Ave, Berkeley, CA 94703',
+    emergencyContactName: 'Kenji Sato',
+    emergencyContactPhone: '(510) 555-0151',
+    groupNumber: 'GRP-BSC-200',
+    status: 'active',
+    assignedProviderId: 'user-009',
+    admissionProgress: ['demographics', 'insurance', 'eligibility', 'intake-forms', 'review', 'admit'],
+    submittedFormIds: ['form-demo', 'form-hipaa', 'form-medical', 'form-consent', 'form-roi'],
+    createdAt: '2026-05-20',
   },
   {
     id: 'pt-003',
@@ -556,6 +595,18 @@ export const patients: Patient[] = [
     isMinor: false,
     payerId: 'payer-cigna',
     memberId: 'CGN-902340',
+    gender: 'Male',
+    phone: '(503) 555-0160',
+    email: 'devon.park@email.com',
+    address: '515 NW Marshall St, Portland, OR 97209',
+    emergencyContactName: 'Lisa Park',
+    emergencyContactPhone: '(503) 555-0161',
+    groupNumber: 'GRP-CGN-500',
+    status: 'active',
+    assignedProviderId: 'user-004',
+    admissionProgress: ['demographics', 'insurance', 'eligibility', 'intake-forms', 'review', 'admit'],
+    submittedFormIds: ['form-demo', 'form-hipaa', 'form-medical', 'form-consent'],
+    createdAt: '2026-06-01',
   },
   {
     id: 'pt-004',
@@ -565,6 +616,17 @@ export const patients: Patient[] = [
     guardianName: 'Lucia Rios',
     payerId: 'payer-medicaid',
     memberId: 'MCD-44712',
+    gender: 'Female',
+    phone: '(510) 555-0170',
+    email: 'lucia.rios@email.com',
+    address: '330 Fruitvale Ave, Oakland, CA 94601',
+    emergencyContactName: 'Lucia Rios',
+    emergencyContactPhone: '(510) 555-0170',
+    status: 'active',
+    assignedProviderId: 'user-003',
+    admissionProgress: ['demographics', 'insurance', 'eligibility', 'intake-forms', 'review', 'admit'],
+    submittedFormIds: ['form-demo', 'form-hipaa', 'form-medical', 'form-consent', 'form-roi'],
+    createdAt: '2026-06-10',
   },
   {
     id: 'pt-005',
@@ -573,6 +635,10 @@ export const patients: Patient[] = [
     isMinor: false,
     payerId: 'payer-blueshield',
     memberId: 'BSC-553210',
+    status: 'active',
+    assignedProviderId: 'user-003',
+    admissionProgress: ['demographics', 'insurance', 'eligibility', 'intake-forms', 'review', 'admit'],
+    createdAt: '2026-06-15',
   },
   {
     id: 'pt-006',
@@ -582,6 +648,17 @@ export const patients: Patient[] = [
     guardianName: 'Sarah Williams',
     payerId: 'payer-aetna',
     memberId: 'AET-44-8892',
+    gender: 'Male',
+    phone: '(510) 555-0180',
+    email: 'sarah.williams@email.com',
+    address: '770 Telegraph Ave, Oakland, CA 94612',
+    emergencyContactName: 'Sarah Williams',
+    emergencyContactPhone: '(510) 555-0180',
+    status: 'active',
+    assignedProviderId: 'user-003',
+    admissionProgress: ['demographics', 'insurance', 'eligibility', 'intake-forms', 'review', 'admit'],
+    submittedFormIds: ['form-demo', 'form-hipaa', 'form-medical', 'form-consent'],
+    createdAt: '2026-06-20',
   },
   {
     id: 'pt-007',
@@ -590,6 +667,17 @@ export const patients: Patient[] = [
     isMinor: false,
     payerId: 'payer-medicaid',
     memberId: 'MCD-88201',
+    gender: 'Female',
+    phone: '(510) 555-0190',
+    email: 'aaliyah.j@email.com',
+    address: '210 Adeline St, Oakland, CA 94607',
+    emergencyContactName: 'Michael Johnson',
+    emergencyContactPhone: '(510) 555-0191',
+    status: 'active',
+    assignedProviderId: 'user-009',
+    admissionProgress: ['demographics', 'insurance', 'eligibility', 'intake-forms', 'review', 'admit'],
+    submittedFormIds: ['form-demo', 'form-hipaa', 'form-medical', 'form-consent', 'form-roi'],
+    createdAt: '2026-06-25',
   },
   {
     id: 'pt-008',
@@ -598,6 +686,10 @@ export const patients: Patient[] = [
     isMinor: false,
     payerId: 'payer-cigna',
     memberId: 'CGN-11023',
+    status: 'active',
+    assignedProviderId: 'user-004',
+    admissionProgress: ['demographics', 'insurance', 'eligibility', 'intake-forms', 'review', 'admit'],
+    createdAt: '2026-07-01',
   },
 ];
 
